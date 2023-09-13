@@ -1,0 +1,66 @@
+
+#python -m streamlit run spamDectector.py
+
+
+
+
+from win32com.client import Dispatch
+
+def speak(text):
+	speak=Dispatch(("SAPI.SpVoice"))
+	speak.Speak(text)
+
+
+
+def result(msg):
+    data = [msg]
+    vect = cv.transform(data).toarray()
+    my_prediction = model1.predict(vect)
+    if my_prediction[0]==1:
+        speak("This is a Spam mail")
+        print("This is a Spam mail")
+    else:
+        speak("This is not a Spam mail")
+        print("This is not a Spam mail")
+        
+d=input()
+result(d)
+
+
+import tkinter as tk
+
+
+
+root=tk.Tk()
+root.geometry("200x200")
+l2=tk.Label(root, text="Email Spam Classification Application")
+l2.pack()
+l1=tk.Label(root, text="Enter Your Message:")
+l1.pack()
+text=tk.Entry(root)
+text.pack()
+def result():
+    data = [text.get()]
+    vect = cv.transform(data).toarray()
+    my_prediction = model1.predict(vect)
+    if my_prediction[0]==1:
+        speak("This is a Spam mail")
+        print("This is a Spam mail")
+    else:
+        speak("This is not a Spam mail")
+        print("This is not a Spam mail")
+B=tk.Button(root, text="Click", command=result)
+B.pack()
+
+root.mainloop()
+
+
+
+
+
+#python -m streamlit run spamDectector.py
+
+
+
+
+
